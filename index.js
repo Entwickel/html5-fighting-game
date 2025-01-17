@@ -1,15 +1,13 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-const gravity = 0.2
-
 canvas.width = 1024
 canvas.height = 576
 
 c.fillRect(0,0,canvas.width, canvas.height)
 c.fillStyle = 'black'
 
-const keys = { a : {pressed : false},
+const keys = { q : {pressed : false},
         d : {pressed : false},
         ArrowLeft: {pressed: false},
         ArrowRight : {pressed : false}
@@ -32,7 +30,6 @@ class Sprite{
     update(){
         this.draw()
         this.position.x += this.velocity.x
-        this.velocity.y += gravity
         this.position.y += this.velocity.y
         if (this.position.y + this.height + this.velocity.y >= canvas.height){
             this.velocity.y = 0
@@ -47,7 +44,12 @@ function animate(){
     player.update()
     ennemy.update()
     player.velocity.x = 0
-    if (key)
+    if (keys.q.pressed){
+        player.velocity.x = 1
+    }
+    else if (keys.d.pressed){
+        player.velocity.x = -1
+    }
 }
 
 const player = new Sprite({
@@ -71,29 +73,33 @@ console.log(player)
 
 animate()
 
-window.addEventListener('keyup', (event) => {
+window.addEventListener('keydown', (event) => {
     switch(event.key){
-        case 'd': 
-            keys.d.pressed = true
-            lastKey = 'd'
+        case 'q': 
+            console.log(event.key)
+            keys.q.pressed = true
+            lastKey = 'q'
             break
-        case 'a': 
-            keys.a.pressed = true
+        case 'd':
+            console.log(event.key)
+            keys.d.pressed = true
             lastKey = 'a'
             break
 
     }
 })
 
-window.addEventListener('keydown', (event) => {
+window.addEventListener('keyup', (event) => {
     switch(event.key){
+        case 'q':
+            console.log(event.key)
+            keys.q.pressed = false
+            lastKey = 'q'
+        break
         case 'd': 
+            console.log(event.key)
             keys.d.pressed = false
             lastKey = 'd'
-        break
-        case 'a': 
-            keys.a.pressed = false
-            lastKey = 'a'
         break
         default:
             player.velocity.x = 0
