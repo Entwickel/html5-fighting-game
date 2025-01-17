@@ -61,10 +61,13 @@ console.log(player)
 
 animate()
 
-window.addEventListener('keydown', (event) => {
+window.addEventListener('keyup', (event) => {
     switch(event.key){
         case 'd': 
-        player.velocity.x = 1
+            player.velocity.x = 1
+        break
+        default:
+            player.velocity.x = 0
         break
     }
     console.log(event)
