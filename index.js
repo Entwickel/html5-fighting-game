@@ -44,10 +44,10 @@ function animate(){
     player.update()
     ennemy.update()
     player.velocity.x = 0
-    if (keys.q.pressed){
+    if (keys.q.pressed && lastKey == 'q'){
         player.velocity.x = 1
     }
-    else if (keys.d.pressed){
+    else if (keys.d.pressed && lastKey == 'd'){
         player.velocity.x = -1
     }
 }
@@ -83,7 +83,7 @@ window.addEventListener('keydown', (event) => {
         case 'd':
             console.log(event.key)
             keys.d.pressed = true
-            lastKey = 'a'
+            lastKey = 'd'
             break
 
     }
@@ -101,9 +101,10 @@ window.addEventListener('keyup', (event) => {
             keys.d.pressed = false
             lastKey = 'd'
         break
-        default:
-            player.velocity.x = 0
-        break
+        case 'z':
+            console.log(event.key)
+            keys.z.pressed = true
+            lastKey = 'z'
 
     }
 })
