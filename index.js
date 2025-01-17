@@ -8,10 +8,45 @@ c.fillRect(0,0,canvas.width, canvas.height)
 
 class Sprite{
  
-    constructor(position){
+    constructor({position, velocity}){
         this.position = position
+        this.velocity = velocity
+    }
+
+    draw(){
+        c.fillStyle = 'red'
+        c.fillRect(this.position.x,this.position.y,50,150)
+    }
+    update(){
+        this.draw()
+        this.position.y += this.velocity.y
     }
 }
 
-const player = new Sprite({x:0,y:0})
+const player = new Sprite({
+position:   {x:0,y:0},
+velocity: {x: 0 , y: 10}
+})
+
+const ennemy = new Sprite(
+    {
+    position:{
+    x: 400,
+    y: 100},
+    velocity: {x:0,y:10}
+
+})
+
+player.draw()
+ennemy.draw()
 console.log(player)
+
+function animate(){
+    window.requestAnimationFrame(animate)
+    c.fillStyle = 'black'
+    c.clearRect(0,0,canvas.width,canvas.height)
+    player.update()
+    ennemy.update()
+}
+
+animate()
