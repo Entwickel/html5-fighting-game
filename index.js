@@ -47,6 +47,7 @@ function animate(){
     player.update()
     ennemy.update()
     player.velocity.x = 0
+    ennemy.velocity.x = 0
     //player movement
     if (keys.q.pressed && player.lastKey == 'q'){
         player.velocity.x = 1
@@ -55,10 +56,10 @@ function animate(){
         player.velocity.x = -1
     }
 
-    if (keys.q.pressed && ennemy.lastKey == 'ArrowLeft'){
+    if (keys.ArrowLeft.pressed && ennemy.lastKey == 'ArrowLeft'){
         ennemy.velocity.x = 1
     }
-    else if (keys.d.pressed && ennemy.lastKey == 'ArrowRight'){
+    else if (keys.ArrowRight.pressed && ennemy.lastKey == 'ArrowRight'){
         ennemy.velocity.x = -1
     }
 
@@ -122,6 +123,8 @@ window.addEventListener('keyup', (event) => {
             keys.z.pressed = false
         case 'ArrowLeft':
             keys.ArrowLeft.pressed = false
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = true
 
     }
 })
