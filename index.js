@@ -11,7 +11,8 @@ const gravity = 0.2
 const keys = { q : {pressed : false},
         d : {pressed : false},
         ArrowLeft: {pressed: false},
-        ArrowRight : {pressed : false}
+        ArrowRight : {pressed : false},
+        z : {pressed: false}
     }   
 
 class Sprite{
@@ -57,10 +58,10 @@ function animate(){
     }
 
     if (keys.ArrowLeft.pressed && ennemy.lastKey == 'ArrowLeft'){
-        ennemy.velocity.x = 1
+        ennemy.velocity.x = -1
     }
     else if (keys.ArrowRight.pressed && ennemy.lastKey == 'ArrowRight'){
-        ennemy.velocity.x = -1
+        ennemy.velocity.x = 1
     }
 
 }
@@ -87,6 +88,7 @@ console.log(player)
 animate()
 
 window.addEventListener('keydown', (event) => {
+    console.log(event.key)
     switch(event.key){
         case 'q': 
             console.log(event.key)
@@ -105,6 +107,7 @@ window.addEventListener('keydown', (event) => {
             keys.ArrowRight.pressed = true
             ennemy.lastKey = 'ArrowRight'
         case 'ArrowLeft':
+            console.log(event.key)
             keys.ArrowLeft.pressed = true
             ennemy.lastKey = 'ArrowLeft'
 
@@ -124,7 +127,7 @@ window.addEventListener('keyup', (event) => {
         case 'ArrowLeft':
             keys.ArrowLeft.pressed = false
         case 'ArrowRight':
-            keys.ArrowRight.pressed = true
+            keys.ArrowRight.pressed = false
 
     }
 })
