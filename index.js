@@ -68,9 +68,12 @@ function animate(){
         ennemy.velocity.x = 1
     }
     else if (keys.ArrowUp.pressed && ennemy.lastKey == 'ArrowUp'){
-        ennemy.velocity.y = -10
+        console.log(ennemy.position.y)
+        //si l'ennemi est en bas du canvas
+        if ((ennemy.position.y + ennemy.height + ennemy.velocity.y >= canvas.height)){
+            ennemy.velocity.y = -10
+        }   
     }
-    console.log(ennemy.velocity.y)
 
 }
 
@@ -90,21 +93,17 @@ const ennemy = new Sprite(
 
 player.draw()
 ennemy.draw()
-console.log(player)
 
 
 animate()
 
 window.addEventListener('keydown', (event) => {
-    console.log(event.key)
     switch(event.key){
         case 'q': 
-            console.log(event.key)
             keys.q.pressed = true
             player.lastKey = 'q'
             break
         case 'd':
-            console.log(event.key)
             keys.d.pressed = true
             player.lastKey = 'd'
             break
@@ -117,12 +116,10 @@ window.addEventListener('keydown', (event) => {
             ennemy.lastKey = 'ArrowRight'
             break
         case 'ArrowLeft':
-            console.log(event.key)
             keys.ArrowLeft.pressed = true
             ennemy.lastKey = 'ArrowLeft'
             break
         case 'ArrowUp':
-            console.log(event.key)
             keys.ArrowUp.pressed = true
             ennemy.lastKey = 'ArrowUp'
             break
@@ -148,6 +145,10 @@ window.addEventListener('keyup', (event) => {
         case 'ArrowRight':
             keys.ArrowRight.pressed = false
             break
-
+        case 'ArrowUp':
+            keys.ArrowUp.pressed = false
+            break
+    
+    
     }
 })
