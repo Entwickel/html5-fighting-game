@@ -62,15 +62,23 @@ class Sprite{
 
     attack(){
         this.isAttacking = true;
-        console.log(this.isAttacking)
         setTimeout(() => {
             this.isAttacking = false
-            console.log(this.isAttacking)
         },100
         )
     }
 }
 
+function rectangularCollision(object1, object2){
+
+    return (
+        object1.attackBox.position.x + object1.attackBox.width >= object2.position.x
+        && object1.attackBox.position.x <= object2.position.x + object2.width
+        && object1.attackBox.position.y + object1.attackBox.height >= object2.position.y
+        && object1.attackBox.position.y <= object2.position.y + object2.height
+    )
+
+}
 function animate(){
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
@@ -103,13 +111,14 @@ function animate(){
         }   
     }
     //detect collision
-    if (player.attackBox.position.x + player.attackBox.width >= ennemy.position.x
-        && player.attackBox.position.x <= ennemy.position.x + ennemy.width
-        && player.attackBox.position.y + player.attackBox.height >= ennemy.position.y
-        && player.attackBox.position.y <= ennemy.position.y + ennemy.height
-    ){
-        console.log("collision")
+    if (rectangularCollision(player,ennemy) && player.isAttacking){
+        console.log("dégat du joueur 1")
     }
+
+    if (rectangularCollision(ennemy,player) && ennemy.isAttacking){
+        console.log("dégat du joueur 2")
+    }
+
 
 }
 
@@ -165,6 +174,10 @@ window.addEventListener('keydown', (event) => {
             keys.ArrowUp.pressed = true
             ennemy.lastKey = 'ArrowUp'
             break
+        case 'ArrowDown':
+            ennemy.attack()
+            break
+    
 
 
     }
