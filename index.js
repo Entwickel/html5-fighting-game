@@ -19,16 +19,31 @@ const keys = { q : {pressed : false},
 
 class Sprite{
  
-    constructor({position, velocity}){
+    constructor({position, velocity, color}){
         this.position = position
         this.velocity = velocity
+        this.color = color
         this.height = 150
         this.lastKey = ''
+        this.attackBox = {
+            position = this.position,
+            width : 100,
+            height : 50
+        }
     }
 
     draw(){
         c.fillStyle = 'red'
         c.fillRect(this.position.x,this.position.y,50,150)
+
+        //attack box
+        c.fillStyle = 'green'
+        c.fillRect{
+            this.attackBox.position.x,
+            this.attackBox.position.y,
+            this.attackBox.height,
+            this.attackBox.width
+        }
     }
     update(){
         this.draw()
@@ -74,6 +89,12 @@ function animate(){
             ennemy.velocity.y = -10
         }   
     }
+    //detect collision
+    if (player.attackBox.position.x + player.attackBox.width >= ennemy.position.x
+        && player.attackBox.position.x <= ennemy.position.x + ennemy.width
+    ){
+        console.log("collision")
+    }
 
 }
 
@@ -87,7 +108,8 @@ const ennemy = new Sprite(
     position:{
     x: 400,
     y: 100},
-    velocity: {x:0,y:0}
+    velocity: {x:0,y:0},
+    color : 'blue'
 
 })
 
