@@ -6,6 +6,7 @@ canvas.height = 576
 
 c.fillRect(0,0,canvas.width, canvas.height)
 c.fillStyle = 'black'
+const gravity = 0.2
 
 const keys = { q : {pressed : false},
         d : {pressed : false},
@@ -13,14 +14,13 @@ const keys = { q : {pressed : false},
         ArrowRight : {pressed : false}
     }   
 
-lastKey = ''
-
 class Sprite{
  
     constructor({position, velocity}){
         this.position = position
         this.velocity = velocity
         this.height = 150
+        this.lastKey = ''
     }
 
     draw(){
@@ -34,6 +34,9 @@ class Sprite{
         if (this.position.y + this.height + this.velocity.y >= canvas.height){
             this.velocity.y = 0
         }
+        else {
+            this.velocity.y += gravity
+        }
     }
 }
 
@@ -44,17 +47,26 @@ function animate(){
     player.update()
     ennemy.update()
     player.velocity.x = 0
-    if (keys.q.pressed && lastKey == 'q'){
+    //player movement
+    if (keys.q.pressed && player.lastKey == 'q'){
         player.velocity.x = 1
     }
-    else if (keys.d.pressed && lastKey == 'd'){
+    else if (keys.d.pressed && player.lastKey == 'd'){
         player.velocity.x = -1
     }
+
+    if (keys.q.pressed && ennemy.lastKey == 'ArrowLeft'){
+        ennemy.velocity.x = 1
+    }
+    else if (keys.d.pressed && ennemy.lastKey == 'ArrowRight'){
+        ennemy.velocity.x = -1
+    }
+
 }
 
 const player = new Sprite({
 position:   {x:0,y:0},
-velocity: {x: 0 , y: 10}
+velocity: {x: 0 , y: 0}
 })
 
 const ennemy = new Sprite(
@@ -62,7 +74,7 @@ const ennemy = new Sprite(
     position:{
     x: 400,
     y: 100},
-    velocity: {x:0,y:10}
+    velocity: {x:0,y:0}
 
 })
 
@@ -78,13 +90,22 @@ window.addEventListener('keydown', (event) => {
         case 'q': 
             console.log(event.key)
             keys.q.pressed = true
-            lastKey = 'q'
+            player.lastKey = 'q'
             break
         case 'd':
             console.log(event.key)
             keys.d.pressed = true
-            lastKey = 'd'
+            player.lastKey = 'd'
             break
+        case 'z':
+            keys.z.pressed = true
+            player.lastKey = 'z'
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = true
+            ennemy.lastKey = 'ArrowRight'
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = true
+            ennemy.lastKey = 'ArrowLeft'
 
     }
 })
@@ -92,19 +113,15 @@ window.addEventListener('keydown', (event) => {
 window.addEventListener('keyup', (event) => {
     switch(event.key){
         case 'q':
-            console.log(event.key)
             keys.q.pressed = false
-            lastKey = 'q'
         break
         case 'd': 
-            console.log(event.key)
             keys.d.pressed = false
-            lastKey = 'd'
         break
         case 'z':
-            console.log(event.key)
-            keys.z.pressed = true
-            lastKey = 'z'
+            keys.z.pressed = false
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = false
 
     }
 })
