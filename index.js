@@ -41,8 +41,8 @@ class Sprite{
         c.fillRect(
             this.attackBox.position.x,
             this.attackBox.position.y,
-            this.attackBox.height,
-            this.attackBox.width
+            this.attackBox.width,
+            this.attackBox.height
         )
     }
 
@@ -93,6 +93,8 @@ function animate(){
     //detect collision
     if (player.attackBox.position.x + player.attackBox.width >= ennemy.position.x
         && player.attackBox.position.x <= ennemy.position.x + ennemy.width
+        && player.attackBox.position.y + player.attackBox.height >= ennemy.position.y
+        && player.attackBox.position.y <= ennemy.position.y + ennemy.height
     ){
         console.log("collision")
     }
