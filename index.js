@@ -27,11 +27,13 @@ class Sprite{
         this.height = 150
         this.lastKey = ''
         this.offset = this.offset
+        this.health = 100
+        this.isAttacking = false;
         this.attackBox = {
-            position : this.position,
-            width : 100,
-            height : 50
-        }
+                position : this.position,
+                width : 100,
+                height : 50
+            }
     }
 
     draw(){
@@ -112,10 +114,16 @@ function animate(){
     }
     //detect collision
     if (rectangularCollision(player,ennemy) && player.isAttacking){
+        player.isAttacking = false;
+        ennemy.health -= 20
         console.log("dégat du joueur 1")
+        document.querySelector("#ennemyHealth").style.width = ennemy.health + '%'
     }
 
     if (rectangularCollision(ennemy,player) && ennemy.isAttacking){
+        ennemy.isAttacking = false;
+        player.health -= 20
+        document.querySelector("#playerHealth").style.width = player.health + '%'
         console.log("dégat du joueur 2")
     }
 
