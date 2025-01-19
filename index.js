@@ -19,14 +19,15 @@ const keys = { q : {pressed : false},
 
 class Sprite{
  
-    constructor({position, velocity, color}){
+    constructor({position, velocity, width, color}){
         this.position = position
         this.velocity = velocity
         this.color = color
+        this.width = width
         this.height = 150
         this.lastKey = ''
         this.attackBox = {
-            position : position,
+            position : this.position,
             width : 100,
             height : 50
         }
@@ -56,6 +57,14 @@ class Sprite{
         else {
             this.velocity.y += gravity
         }
+    }
+
+    attack(){
+        this.isAttacking = true;
+        setTimeout(() => {
+            this.isAttacking = false
+        },100
+        )
     }
 }
 
@@ -103,7 +112,8 @@ function animate(){
 
 const player = new Sprite({
 position:   {x:0,y:0},
-velocity: {x: 0 , y: 0}
+velocity: {x: 0 , y: 0},
+width: 50
 })
 
 const ennemy = new Sprite(
@@ -112,6 +122,7 @@ const ennemy = new Sprite(
     x: 400,
     y: 100},
     velocity: {x:0,y:0},
+    width : 50,
     color : 'blue'
 
 })
@@ -135,6 +146,9 @@ window.addEventListener('keydown', (event) => {
         case 'z':
             keys.z.pressed = true
             player.lastKey = 'z'
+            break
+        case ' ':
+            player.attack()
             break
         case 'ArrowRight':
             keys.ArrowRight.pressed = true
