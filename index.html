@@ -24,7 +24,15 @@
                 </div>
             </div>
             <!-- timer-->
-            <div style="background-color: rgb(17, 0, 255); width: 100px;height: 100px;"></div>
+            <div id="timer" style="
+            background-color: rgb(17, 0, 255); 
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items:center;
+            justify-content: center;
+            ">10</div>
             <!-- vie du joueur 2-->
             <div style="position: relative;width: 100%;">
                 <div style="background-color: rgb(255, 255, 255);height: 30px;"> </div>
@@ -38,7 +46,16 @@
             "></div>
                 
             </div>
-
+            <div id = "displayText" style="position: absolute; 
+            color:white; 
+            align-items:center;
+            justify-content: center;
+            top: 0;
+            bottom: 150;
+            right: 0;
+            left: 0;
+            display: none;
+            ">Egalité !</div>
         </div>
         <canvas></canvas>
     </div>
