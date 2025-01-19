@@ -7,7 +7,7 @@ canvas.height = 576
 c.fillRect(0,0,canvas.width, canvas.height)
 c.fillStyle = 'black'
 const gravity = 0.2
-
+const vitesse = 10
 const keys = { q : {pressed : false},
         d : {pressed : false},
         ArrowLeft: {pressed: false},
@@ -19,13 +19,14 @@ const keys = { q : {pressed : false},
 
 class Sprite{
  
-    constructor({position, velocity, width, color}){
+    constructor({position, velocity, width, color = 'red', offset}){
         this.position = position
         this.velocity = velocity
         this.color = color
         this.width = width
         this.height = 150
         this.lastKey = ''
+        this.offset = this.offset
         this.attackBox = {
             position : this.position,
             width : 100,
@@ -61,8 +62,10 @@ class Sprite{
 
     attack(){
         this.isAttacking = true;
+        console.log(this.isAttacking)
         setTimeout(() => {
             this.isAttacking = false
+            console.log(this.isAttacking)
         },100
         )
     }
@@ -78,25 +81,25 @@ function animate(){
     ennemy.velocity.x = 0
     //player movement
     if (keys.q.pressed && player.lastKey == 'q'){
-        player.velocity.x = 1
+        player.velocity.x = vitesse
     }
     else if (keys.d.pressed && player.lastKey == 'd'){
-        player.velocity.x = -1
+        player.velocity.x = -vitesse
     }
     else if (keys.z.pressed && player.lastKey == 'z'){
-        player.velocity.y = -10
+        player.velocity.y = -vitesse
     }
     if (keys.ArrowLeft.pressed && ennemy.lastKey == 'ArrowLeft'){
-        ennemy.velocity.x = -1
+        ennemy.velocity.x = -vitesse
     }
     else if (keys.ArrowRight.pressed && ennemy.lastKey == 'ArrowRight'){
-        ennemy.velocity.x = 1
+        ennemy.velocity.x = vitesse
     }
     else if (keys.ArrowUp.pressed && ennemy.lastKey == 'ArrowUp'){
         console.log(ennemy.position.y)
         //si l'ennemi est en bas du canvas
         if ((ennemy.position.y + ennemy.height + ennemy.velocity.y >= canvas.height)){
-            ennemy.velocity.y = -10
+            ennemy.velocity.y = -vitesse
         }   
     }
     //detect collision
