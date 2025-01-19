@@ -12,7 +12,9 @@ const keys = { q : {pressed : false},
         d : {pressed : false},
         ArrowLeft: {pressed: false},
         ArrowRight : {pressed : false},
-        z : {pressed: false}
+        z : {pressed: false},
+        ArrowUp : {pressed : false},
+
     }   
 
 class Sprite{
@@ -56,13 +58,19 @@ function animate(){
     else if (keys.d.pressed && player.lastKey == 'd'){
         player.velocity.x = -1
     }
-
+    else if (keys.z.pressed && player.lastKey == 'z'){
+        player.velocity.y = -10
+    }
     if (keys.ArrowLeft.pressed && ennemy.lastKey == 'ArrowLeft'){
         ennemy.velocity.x = -1
     }
     else if (keys.ArrowRight.pressed && ennemy.lastKey == 'ArrowRight'){
         ennemy.velocity.x = 1
     }
+    else if (keys.ArrowUp.pressed && ennemy.lastKey == 'ArrowUp'){
+        ennemy.velocity.y = -10
+    }
+    console.log(ennemy.velocity.y)
 
 }
 
@@ -113,6 +121,12 @@ window.addEventListener('keydown', (event) => {
             keys.ArrowLeft.pressed = true
             ennemy.lastKey = 'ArrowLeft'
             break
+        case 'ArrowUp':
+            console.log(event.key)
+            keys.ArrowUp.pressed = true
+            ennemy.lastKey = 'ArrowUp'
+            break
+
 
     }
 })
