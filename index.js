@@ -103,13 +103,16 @@ window.addEventListener('keydown', (event) => {
         case 'z':
             keys.z.pressed = true
             player.lastKey = 'z'
+            break
         case 'ArrowRight':
             keys.ArrowRight.pressed = true
             ennemy.lastKey = 'ArrowRight'
+            break
         case 'ArrowLeft':
             console.log(event.key)
             keys.ArrowLeft.pressed = true
             ennemy.lastKey = 'ArrowLeft'
+            break
 
     }
 })
@@ -124,10 +127,13 @@ window.addEventListener('keyup', (event) => {
         break
         case 'z':
             keys.z.pressed = false
+            break
         case 'ArrowLeft':
             keys.ArrowLeft.pressed = false
+            break
         case 'ArrowRight':
             keys.ArrowRight.pressed = false
+            break
 
     }
 })
