@@ -22,14 +22,10 @@ tuto : https://www.youtube.com/watch?v=vyqbNFMDRGQ
 
 Pour utiliser ce projet, vous pouvez simplement ouvrir le fichier `index.html` dans un navigateur moderne.
 
-## Contribuer
-
-Contributions sont les bienvenues ! Veuillez consulter les sections de documentation détaillées pour plus d'informations sur la façon de contribuer à ce projet.
-
 ## Licence
 
 Le projet est sous license open source, les assets appartiennent à Chris Courses. https://drive.google.com/drive/folders/1569Y7WYX-aQf6LKstJtpuWQD0ylWxZ4P
 
 ## Contact
 
-Si vous avez des questions ou si vous souhaitez discuter du projet, n'hésitez pas à contacter l'auteur via [votre adresse email ou votre profil GitHub].
+[Entwickel](https://github.com/Entwickel)
