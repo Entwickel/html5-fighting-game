@@ -5,21 +5,16 @@ class Sprite{
         this.width = 50
         this.height = 150
         this.image = new Image()
-        this.imageSrc = imageSrc
+        this.image.src = imageSrc
         this.scale = scale
         this.framesMax = framesMax
     }
 
     draw(){
         c.drawImage(this.image,
-            0,
-            0,
-            this.image.width/this.framesMax,
-            this.image.height,
             this.position.x,
             this.position.y,
-        (this.image.width/6) * this.scale ,
-        this.image.height * this.scale )
+         )
     }
 
     update(){
