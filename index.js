@@ -1,14 +1,9 @@
-import "./classes"
-
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
 canvas.width = 1024
 canvas.height = 576
 
-const shop = new Sprite({position:{x:0,y:0}, imageSrc : "asset/background.png"})
-c.fillRect(0,0,canvas.width, canvas.height)
-c.fillStyle = 'black'
 const gravity = 0.2
 const vitesse = 10
 const keys = { q : {pressed : false},
@@ -63,10 +58,12 @@ function decreaseTimer(){
 }
 decreaseTimer()
 
+//game loop
 function animate(){
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.clearRect(0,0,canvas.width,canvas.height)
+    background.update()
     player.update()
     ennemy.update()
     player.velocity.x = 0
@@ -117,13 +114,13 @@ function animate(){
 
 }
 
-const player = new Sprite({
+const player = new Fighter({
 position:   {x:0,y:0},
 velocity: {x: 0 , y: 0},
 width: 50
 })
 
-const ennemy = new Sprite(
+const ennemy = new Fighter(
     {
     position:{
     x: 400,
@@ -133,10 +130,12 @@ const ennemy = new Sprite(
     color : 'blue'
 
 })
+const background = new Sprite({position:{x:0,y:0}, imageSrc : "asset/background.png"})
+background.draw()
 
 player.draw()
 ennemy.draw()
-
+console.log(background)
 
 animate()
 
