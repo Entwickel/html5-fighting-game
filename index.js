@@ -64,6 +64,7 @@ function animate(){
     c.fillStyle = 'black'
     c.clearRect(0,0,canvas.width,canvas.height)
     background.update()
+    shop.update()
     player.update()
     ennemy.update()
     player.velocity.x = 0
@@ -132,7 +133,8 @@ const ennemy = new Fighter(
 })
 const background = new Sprite({position:{x:0,y:0}, imageSrc : './asset/background.png'})
 background.draw()
-
+const shop = new Sprite({scale: 2.75,position:{x:600,y:128}, imageSrc : './asset/shop.png'})
+shop.draw()
 player.draw()
 ennemy.draw()
 console.log(background)

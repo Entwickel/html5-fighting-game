@@ -14,6 +14,8 @@ class Sprite{
         c.drawImage(this.image,
             this.position.x,
             this.position.y,
+            this.image.width * this.scale,
+            this.image.height * this.scale
          )
     }
 
